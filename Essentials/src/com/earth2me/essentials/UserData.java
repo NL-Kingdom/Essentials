@@ -676,6 +676,11 @@ public abstract class UserData extends PlayerExtension implements IConf {
         config.save();
     }
 
+    public void setNewLoginAddress(String ipAddress){
+        _setLastLoginAddress(ipAddress);
+        config.save();
+    }
+
     private long lastLogout;
 
     private long _getLastLogout() {
@@ -704,7 +709,7 @@ public abstract class UserData extends PlayerExtension implements IConf {
 
     private void _setLastLoginAddress(String address) {
         lastLoginAddress = address;
-        config.setProperty("ipAddress", address);
+        config.setProperty("ipAddress", "ip less");
     }
 
     private boolean afk;

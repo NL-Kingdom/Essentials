@@ -129,7 +129,7 @@ public class Commandseen extends EssentialsCommand {
             sender.sendMessage(tl("whoisGeoLocation", location));
         }
         if (showIp) {
-            sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
+            sender.sendMessage(tl("whoisIPAddress", "Ip less version"));
         }
     }
 
@@ -179,7 +179,7 @@ public class Commandseen extends EssentialsCommand {
         }
         if (showIp) {
             if (!user.getLastLoginAddress().isEmpty()) {
-                sender.sendMessage(tl("whoisIPAddress", user.getLastLoginAddress()));
+                sender.sendMessage(tl("whoisIPAddress", "Ip less version"));
             }
         }
         if (showLocation) {
@@ -191,37 +191,7 @@ public class Commandseen extends EssentialsCommand {
     }
 
     private void seenIP(final Server server, final CommandSource sender, final String ipAddress) throws Exception {
-        final UserMap userMap = ess.getUserMap();
-
-        if (ess.getServer().getBanList(BanList.Type.IP).isBanned(ipAddress)) {
-            sender.sendMessage(tl("isIpBanned", ipAddress));
-        }
-
-        sender.sendMessage(tl("runningPlayerMatch", ipAddress));
-
-        ess.runTaskAsynchronously(() -> {
-            final List<String> matches = new ArrayList<>();
-            for (final UUID u : userMap.getAllUniqueUsers()) {
-                final User user = ess.getUserMap().getUser(u);
-                if (user == null) {
-                    continue;
-                }
-
-                final String uIPAddress = user.getLastLoginAddress();
-
-                if (!uIPAddress.isEmpty() && uIPAddress.equalsIgnoreCase(ipAddress)) {
-                    matches.add(user.getName());
-                }
-            }
-
-            if (matches.size() > 0) {
-                sender.sendMessage(tl("matchingIPAddress"));
-                sender.sendMessage(StringUtil.joinList(matches));
-            } else {
-                sender.sendMessage(tl("noMatchingPlayers"));
-            }
-
-        });
+        sender.sendMessage("command does not work in this version, because we dont save ips");
 
     }
 
